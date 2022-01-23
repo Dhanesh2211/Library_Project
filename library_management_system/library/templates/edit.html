@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <style>
+        fieldset {
+            background-color: rgba(62, 235, 18, 0.425);
+            border-style: solid;
+            color: #050505e0;
+            font-size: 20px;
+            margin-top: 100px;
+            margin-bottom: 100px;
+            margin-right: 100px;
+            margin-left: 100px;
+            height: "100";
+            width: "100"
+        }
+    </style>
+
+</head>
+<body>
+    <center>
+        <fieldset>
+            <form action="/book_update" method="post">
+                {%csrf_token%}
+           
+                   
+                    <h3>Update Books</h3>
+    
+                               
+                    <input type="hidden" name="id" value="{{data.0.id}}"><br><br>
+    
+                    Book Name:<input type="text" placeholder="Book Name" class="form-control" name="Book_Name" value="{{data.0.Book_Name}}"><br>
+                    Book Description:<input type="text" placeholder="Book Description" name="Book_Description" class="form-control" value="{{data.0.Book_Description}}" style="min-height: 100px;"><br><br>
+               
+                    Book Date:<input type="date" placeholder="dd/mm/yy" name="Book_date" class="form-control" value="{{data.0.Book_date}}"><br>
+                  
+    
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button  data-dismiss="modal" class="btn btn-danger">Cancel</button>
+              
+                </form>
+            </fieldset>
+        </center>
+</body>
+</html>
+

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src='main.js'></script>
+</head>
+
+<body>
+    <form action="" method="post">
+        {%csrf_token%}
+        <center>
+            <h1> Book Details</h1>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mydiv">Add Book</button>
+        </center>
+        <button type="button" class="btn btn-info btn-xs float:margin-left" style="float: left;"><a href="admin_logout">Logout</a></button>
+        </td>
+
+        <hr>
+           
+        <center>
+            
+           
+            <table border=" 2px ">
+                <tr>
+                    <th>Sr No.</th>
+                    <th>Book Name</th>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Update Book</th>
+                    <th>Delete Book</th>
+
+
+                </tr>
+               {% for i in book_details %}
+                <tr>
+                    <td>{{i.id}}</td>
+                    <td>{{i.Book_Name}}</td>
+                    <td><img src="media/images" height="40px">{{i.Book_Image}}</td>
+                    <td> {{i.Book_Description}}</td>
+                    <td>{{i.Book_date}}</td>
+                   <td> <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#mydiv1"><a href="book_edit?id={{i.id}}">EDIT Book</a></button>
+                </td>
+                    <td>
+                        <button type="button " class="btn btn-danger btn-xs"><a href="book_delete?id={{i.id}}">Delete Book</a></button> </td>
+                </tr>
+    
+              {% endfor %}
+        </center>
+
+
+        </table>
+    </form>
+
+
+</body>
+<form action="add_book" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+<div id="mydiv" class="modal fade" role="dio=alog" style="background-color:darkgray">
+    <div class="modal-dialog">
+        <div class="modal-content" >
+           
+            <div class="modal-header" style="background-color:darksalmon">
+                
+                <h3 class="modal-title" style="color: tomato;" >Enter Book Details</h3>
+
+            </div>
+            <div class="modal-body" style="background-color:darksalmon">
+                <input type="text" placeholder="Book Name" name="Book_Name" class="form-control"><br>
+                <input type="file" placeholder="resume" name="Book_Image" class="form-control"><br>
+                <textarea placeholder="Description" name="Book_Description" class="form-control" cols="10" rows="3"></textarea><br><br>               
+                <input type="date" placeholder="dd/mm/yy" name="Book_date" class="form-control"><br>
+
+
+            </div>
+            <div class="modal-footer" style="background-color: darksalmon;">
+                <button class="btn btn-success">Submit</button>
+                <button  data-dismiss="modal" class="btn btn-warning">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+
+
+</html>
